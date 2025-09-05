@@ -6,10 +6,12 @@ echo "<!DOCTYPE html>";
 
 echo "<html>";
 
+echo "<img = src='cheering.jfif', alt='Kyte'>"; // there is my image
+
     echo "<head>";
 
         echo "<title>Kyte</title>";
-        echo "<img = src='cheering.jfif' alt='Kyte'>"; // there is my image
+
 
     echo "</head>";
 
@@ -39,18 +41,27 @@ echo "<html>";
         echo "<br>";
 
         echo "<hr>";
-        echo "<a href='\page2.php'> go to page 2</a> ";
+        echo "<a href='page2.php'> go to page 2</a> ";
 
         echo "<table>";
 
-        echo "<tr>";
+            echo "<tr>";
 
-        echo "<th>hello1</th>";
-        echo "<th>hello2</th>";
-        echo "<th>hello3</th>";
+            echo "<th>hello1</th>";
+            echo "<th>hello2</th>";
+            echo "<th>hello3</th>";
 
-        echo"</tr>";
+            echo"</tr>";
         echo"</table>";
+
+        echo "<hr>";
+
+        echo "<ol>";
+        echo "<li>hello1</li>";
+        echo "<li>hello2</li>";
+        echo "<li>hello3</li>";
+
+        echo "</ol>";
 
     echo "</body>";
 
