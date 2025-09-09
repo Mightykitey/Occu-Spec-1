@@ -11,8 +11,7 @@ echo "<img = src='cheering.jfif', alt='Kyte'>"; // there is my image
     echo "<head>";
 
         echo "<title>Kyte</title>";
-
-
+        
     echo "</head>";
 
     // This is not an ideal way but due to IT  system being unstable
