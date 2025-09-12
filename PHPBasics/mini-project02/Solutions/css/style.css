@@ -1,0 +1,44 @@
+body{
+    background: #4E4081;
+    background: linear-gradient(90deg, rgba(78, 64, 129, 1) 0%, rgba(61, 9, 121, 1) 100%, rgba(98, 0, 255, 1) 100%);
+
+}
+h1{
+    text-align: center;
+    color: #40816E;
+    border: solid;
+}
+ ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #40816E;
+    text-align: center;
+}
+a {
+    color: #40816E;
+    text-decoration: none;
+    font-weight: bold;
+}
+a:hover {
+    text-decoration: underline;
+}
+tr{
+    color: #40816E;
+}
+#logo{
+    clip-path: circle(50%);
+    height: 150px;
+
+
+}
