@@ -10,10 +10,13 @@ echo "<img id='logo' src='images/logo.jpg'  alt='logo' >";
 echo"<table>";
 
 echo"<tr>";
-
-
+    echo"<th>Courses</th>";
+    echo"<h3>Spaces</h3>";
+    echo"<h3>Tutor</h3>";
 
 echo"</tr>";
+
+
 
 
 
