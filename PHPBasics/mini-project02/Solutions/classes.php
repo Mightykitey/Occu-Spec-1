@@ -6,6 +6,26 @@ echo"<link rel='stylesheet' href='css/style.css'>";
 echo"</head>";
 echo"<body>";
 echo "<img id='logo' src='images/logo.jpg'  alt='logo' >";
+
+echo"<table>";
+
+echo"<tr>";
+
+
+
+echo"</tr>";
+
+
+
+
+
+
+
+
+
+
+
+
 echo"<a href='index.php'>Return back</a>";
 echo"</body>";
 echo"</html>";

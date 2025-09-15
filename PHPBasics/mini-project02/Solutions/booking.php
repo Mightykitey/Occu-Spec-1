@@ -10,8 +10,20 @@ echo"<body>";
     echo"<br>";
     echo"<h1>PLease fill in the booking form</h1>";
         echo "<form method='post' action=''>";
-        echo "<table>"; // Start the table
 
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+            echo"<hr>";
+            echo"<br>";
+            echo"<p>";
+            echo "Your name is " . $_POST["name"]. "<br>";
+            echo "Your email is " . $_POST["email"]. "<br>";
+            echo "Your phone number is " . $_POST["phone"]. "<br>";
+            echo "The classes ou have selected are " . $_POST["class"] . "<br>";
+            echo"</p>";
+            echo"<br>";
+        }
+
+        echo "<table>"; // Start the table
             echo "<tr><td>";
             echo "<label for='name'>Please enter your First name</label><br>";
             echo "<input type='text' name='name' id='name' placeholder='Name' required>";
@@ -36,6 +48,13 @@ echo"<body>";
             echo "<label for='class'>Please enter the course you want</label><br>";
             echo "<input type='text' name='class' id='class' placeholder='Class' required>";
             echo "</td></tr>";
+
+            echo "<tr><td>";
+            echo "<label for='lgn'>Submission </label>";
+            echo "<input type='submit' name='submit' id='lgn' value='submission'>";
+            echo "</td></tr>";
+
+            echo "</form>";
 
         echo "</table>"; // End the table
     echo "</form>";
