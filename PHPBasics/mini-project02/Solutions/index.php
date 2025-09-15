@@ -13,4 +13,5 @@ echo"</head>";
         echo"<tr><td><a href='reviews.php'>Reviews</a></td></tr>";
         echo"<tr><td><a href='booking.php'>Booking</a></td></td>";
         echo"<tr><td><a href='classes.php'>Classes</a></td></tr>";
-
+        echo"</table>";
+    echo"<img id='online' src='images/online.jpg' alt='onlineprogress'>";

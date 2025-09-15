@@ -8,7 +8,8 @@ echo"</head>";
 
 echo"<body>";
 echo "<img id='logo' src='images/logo.jpg'  alt='logo' >";
-echo"<h2>Sign in</h2>";
+echo"<img id='done' src='images/GoneGreat.jpg' alt='done'>";
+echo"<h1>Sign in</h1>";
     echo "<form method='post' action=''>"; // Change 'login.php' to your handler script
         echo "<table>";
 

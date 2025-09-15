@@ -33,9 +33,11 @@ a {
     color: #40816E;
     text-decoration: none;
     font-weight: bold;
+    border: #45a29e outset;
 }
 a:hover {
     text-decoration: underline;
+    color: #40816E;
 }
 tr,hr{
     color: #40816E;
@@ -56,4 +58,22 @@ h3{
     border: 1px solid #40816E;
     color: #40816E;
     text-align: center;
+}
+#learn{
+    height: 300px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+#online{
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    height: 200px;
+    position: fixed;
+    bottom:0;
+}
+#done{
+    height: 175px;
+    position: fixed;
+    top:0;
+    right:0;
 }
