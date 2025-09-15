@@ -1,4 +1,5 @@
 <?php
+session_start();/*each page not file*/
 
 echo"<!doctype html>";
 
@@ -14,6 +15,7 @@ echo"</head>";
 echo"<body>";
 
     echo"<h1></h1>";
+    echo"<br>";
     echo"<p></p>";
 
     echo"<table>";
@@ -22,6 +24,9 @@ echo"<body>";
         echo"<td></td>>";
 
     echo"</table>";
+
+
+
 echo"</body>";
 
 echo"</html>";
