@@ -8,7 +8,7 @@ echo"<body>";
 
     echo"<img id='logo' src='images/logo.jpg'  alt='logo' >";
     echo"<br>";
-    echo"<h1>PLease fill in the booking form</h1>";
+    echo"<h1>Please fill in the booking form</h1>";
         echo "<form method='post' action=''>";
 
         if($_SERVER["REQUEST_METHOD"] == "POST"){
