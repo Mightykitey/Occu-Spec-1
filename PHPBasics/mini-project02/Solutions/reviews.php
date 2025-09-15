@@ -15,8 +15,9 @@ echo"</head>";
         echo "<table>";
 
             echo "<tr><td>";
-            echo "    <label for=\"name\">Your Name:</label>";
-            echo "    <input type=\"text\" id=\"name\" name=\"name\" required>";
+            echo "<label for=\"name\">Your Name:</label>";
+            echo"<br>";
+            echo "<input type=\"text\" id=\"name\" name=\"name\" required>";
             echo "</tr></td>";
 
 
