@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: solid 1px #66fcf1;
+    border: solid 1px red;
 }
 
 nav ul {
@@ -18,22 +18,3 @@ nav li:hover{
     background-color: #66fcf1;/*this make it when ever you hover over it with mice it change it colour*/
 }
 
-body{
-    background: #4E4081;
-    background: linear-gradient(90deg, rgba(78, 64, 129, 1) 0%, rgba(61, 9, 121, 1) 100%, rgba(98, 0, 255, 1) 100%);
-
-}
-th, td {
-    padding: 10px;
-    border: 1px solid #40816E;
-    text-align: center;
-}
-tr,hr{
-    color: #40816E;
-}
-#ERROR{
-    color: tomato;
-}
-#cor{
-    color: greenyellow;
-}

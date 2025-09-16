@@ -1,6 +1,14 @@
 <?php
 session_start();/*each page not file*/
 
+require_once "asssets/commonfunk.php"; //require_once only happen once anywhere
+
+if ($_SERVER["REQUEST_METHOD"] === 'POST') { // super global veurable
+    // echo $_POST["message"];
+    $_SESSION['msg'] = $_POST["message"];
+
+}
+
 echo"<!doctype html>";
 
 echo"<html>";
@@ -14,16 +22,12 @@ echo"</head>";
 
 echo"<body>";
 
-    echo"<h1></h1>";
-    echo"<br>";
-    echo"<p></p>";
 
-    echo"<table>";
+echo "<div class='content'>";
 
-        echo"<tr>";
-        echo"<td></td>>";
+echo usr_msg();
 
-    echo"</table>";
+echo "<form method='post' action=''>";
 
 
 
