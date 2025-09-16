@@ -17,4 +17,7 @@ nav ul {
 nav li:hover{
     background-color: #66fcf1;/*this make it when ever you hover over it with mice it change it colour*/
 }
+body{
+    background-color: beige;
 
+}
