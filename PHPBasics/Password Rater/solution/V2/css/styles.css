@@ -32,17 +32,22 @@ body{
 h1,h2,p,label{
     color: honeydew;
 }
+
 .content{
     display: flex;/
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border:1px, solid, peachpuff;
+    background-color: dimgray;
+    padding: 2px;
 }
+
 .good{
     border: 5px, chartreuse;
     background-color: chartreuse;
 }
+
 .bad{
     border: 5px,tomato;
     background-color: tomato;

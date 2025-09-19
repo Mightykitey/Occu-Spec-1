@@ -3,10 +3,9 @@ session_start();/*each page that needs a session, not file*/
 
 require_once "assets/commonfunk.php"; //require_once only happen once anywhere
 
-if ($_SERVER["REQUEST_METHOD"] === 'POST') { // super global veurable
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { // super global veurable
     // echo $_POST["message"];
     $_SESSION['Pw'] = $_POST["password"];
-
 }
 
 echo "<!DOCTYPE html>";
@@ -29,7 +28,7 @@ echo "<form method='post' action=''>"; // request(post)
 echo "<label for='Pw'>Please enter our password to be rated</label>";
 echo"<br>";
 // this a label in front of the box's
-echo "<input type='text' name='password' id='Pw' placeholder='Password'>";
+echo "<input type='password' name='password' id='Pw' placeholder='Password'>";
 // most thing start with an input. declare a name(num). placeholder text in the box's
 echo"<br>";
 echo "<br>";
@@ -37,7 +36,7 @@ echo "<label for='lgn'> Login in </label>";
 echo"<br>";
 echo "<input  type='submit' name='submit' id='lgn' value='login'>";
 
-
+echo"</form>";
 
 
 echo "<link rel='stylesheet' href='css/styles.css'>";

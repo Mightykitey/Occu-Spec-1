@@ -17,11 +17,11 @@ echo"</head>";
 
         echo"<div class='content'>";
             echo"<h2>Why using different passwords are important</h2>";
-                echo"<p>Using different passwords for each account is important because it protects you from 
-                        hackers who try stolen passwords on multiple sites—a tactic called credential stuffing. 
-                        If you reuse the same password and one account is breached, all your other accounts become vulnerable too. 
-                        Unique passwords limit the damage of a breach, help prevent identity theft, and keep your sensitive information safe. 
-                        Using a password manager makes it easy to generate and store strong, unique passwords without needing to remember them all.
+                echo"<p> Using different passwords for each account is important because it protects you from 
+                         hackers who try stolen passwords on multiple sites—a tactic called credential stuffing. 
+                         If you reuse the same password and one account is breached, all your other accounts become vulnerable too. 
+                         Unique passwords limit the damage of a breach, help prevent identity theft, and keep your sensitive information safe. 
+                         Using a password manager makes it easy to generate and store strong, unique passwords without needing to remember them all.
                     </p>";
         echo"</div>";
 
@@ -30,12 +30,12 @@ echo"</head>";
 
         echo"<div class='content'>";
             echo"<h2>Why should we change are password frequency</h2>";
-                echo"<p>You should change your password regularly to protect your personal information from unauthorized access. 
-                Over time, passwords can become compromised through data breaches, phishing attacks, or simply by being reused across multiple accounts. 
-                By updating your password frequently and using strong, unique combinations, you reduce the risk of identity theft and keep your online accounts more secure.
+                echo"<p> You should change your password regularly to protect your personal information from unauthorized access. 
+                 Over time, passwords can become compromised through data breaches, phishing attacks, or simply by being reused across multiple accounts. 
+                 By updating your password frequently and using strong, unique combinations, you reduce the risk of identity theft and keep your online accounts more secure.
             </p>";
-        echo"</div>";
 
+        echo"</div>";
 
     echo"</body>";
 
