@@ -1,6 +1,13 @@
 <?php
-
 session_start();/*each page that needs a session, not file*/
+
+require_once "assets/commonfunk.php"; //require_once only happen once anywhere
+
+if ($_SERVER["REQUEST_METHOD"] === 'POST') { // super global veurable
+    // echo $_POST["message"];
+    $_SESSION['Pw'] = $_POST["password"];
+
+}
 
 echo "<!DOCTYPE html>";
 echo "<html>";
@@ -15,7 +22,7 @@ require_once 'assets/nav.php';
 echo"<br>";
 echo"<br>";
 
-echo usr_msg();
+echo usr_Pw();
 
 echo "<form method='post' action=''>"; // request(post)
 // is there is not sent it just reload the page
@@ -31,9 +38,6 @@ echo"<br>";
 echo "<input  type='submit' name='submit' id='lgn' value='login'>";
 
 
-
-
-echo "</form>";
 
 
 echo "<link rel='stylesheet' href='css/styles.css'>";

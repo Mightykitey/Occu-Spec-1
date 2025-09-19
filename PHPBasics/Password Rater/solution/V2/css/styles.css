@@ -12,6 +12,7 @@ nav a:hover {
 }
 
 nav ul {
+
     list-style-type: none; /* remove bullet point*/
     margin: 0; /* remove any default margin*/
     padding: 0; /* remove an default padding*/

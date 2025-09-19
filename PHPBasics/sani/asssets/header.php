@@ -4,7 +4,7 @@
     // session_start(); // Commented out for now
 
     // Include common functions (only once to avoid duplication)
-    // require_once "asssets/commonfunk.php"; // Commented out
+    // require_once "assets/commonfunk.php"; // Commented out
 
     // Handle form submission (if form is submitted using POST)
     // if ($_SERVER["REQUEST_METHOD"] === 'POST') {
