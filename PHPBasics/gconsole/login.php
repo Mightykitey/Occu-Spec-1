@@ -13,8 +13,7 @@ echo"<div class='container'>";
 echo"<h1>Consoles</h1>";
 require_once 'assets/nav.php';
 echo"<br>";
-echo"</div>";
-echo"<br>";
+
 
     echo"<div class='form-container'>";
         echo"<form method='post' action='login.php'>";
@@ -32,8 +31,17 @@ echo"<br>";
             echo"<label for='submit'>submit: </label>";
             echo"<br>";
             echo"<input type='submit' name='submit' value='Login'>";
-
         echo"</form>";
+
+
+        echo"<figure id='DreamCast'>";
+        echo"<img src='images/Dreamcast.png' alt='Dreamcast'>";
+        echo"</figure>";
+
+        echo "<figure id='3DS'>";
+        echo "<img src='images/3DS.png' alt='3DS'>";
+        echo "</figure>";
+
     echo"</div>";
 
 echo"</body>";
