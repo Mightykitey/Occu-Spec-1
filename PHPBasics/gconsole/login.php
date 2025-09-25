@@ -33,19 +33,20 @@ echo"<br>";
             echo"<input type='submit' name='submit' value='Login'>";
         echo"</form>";
 
-
-        echo"<figure id='DreamCast'>";
-        echo"<img src='images/Dreamcast.png' alt='Dreamcast'>";
-        echo"</figure>";
-
-        echo "<figure id='3DS'>";
-        echo "<img src='images/3DS.png' alt='3DS'>";
-        echo "</figure>";
-
     echo"</div>";
+
+    echo"<figure id='DreamCast'>";
+      echo"<img src='images/Dreamcast.png' alt='Dreamcast'>";
+    echo"</figure>";
+
+    echo "<figure id='3DS'>";
+        echo "<img src='images/3DS.png' alt='3DS'>";
+    echo "</figure>";
+
+
 
 echo"</body>";
 
 echo"</html>";
 
-
+// complacently the access of the users

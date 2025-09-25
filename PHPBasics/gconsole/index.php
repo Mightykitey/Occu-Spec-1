@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+require_once "assets/dabco.php";
+
 echo"<!doctype html>";
 echo"<html>";
 
@@ -16,7 +20,12 @@ echo"<body>";
         require_once 'assets/nav.php';
         echo"<br>";
 
-
+    try{
+        $conn = dabco_insert();
+        echo "Connected successfully";
+    }catch(PDOException $e){
+        echo $e->getMessage();
+    }
 
 
         echo"<div class='gallery'>";
