@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+
+
 echo "<!doctype html>";
 echo "<html>";
 
@@ -49,6 +53,17 @@ echo "<br>";
     echo "<input type='submit' name='submit' value='Login'>";
 
 echo "</form>";
+
+
+
+        echo"<img src='images/switch.png' id='switch' alt='Switch'>";
+
+
+
+        echo"<img src='images/Switch2.png' id='switch2' alt='Switch 2'>";
+
+
+
 echo "</div>";
 
 echo "</body>";

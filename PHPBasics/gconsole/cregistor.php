@@ -1,5 +1,22 @@
 <?php
 
+session_start();
+require_once("assets.dabco");
+require_once("");
+
+
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
+    try{
+        new_console(dabco_insert(), $_POST); //calling the subruten
+        $_SESSION['usermessage'] = "Success console registered!";
+    }catch(Exception $e){
+        $_SESSION['usermessage'] = $e->getMessage();
+    }
+}
+
+
+
+
 echo "<!doctype html>";
 echo "<html>";
 
@@ -16,7 +33,7 @@ echo "<br>";
 echo "<br>";
 
     echo "<div class='form-container'>";
-    echo "<form method='post' action='login.php'>";
+    echo "<form method='post' action=''>";
 
     echo "<label for='manufacture'>Manufacture: </label>";
     echo "<br>";
@@ -33,6 +50,12 @@ echo "<br>";
     echo "<input type='text' name='date' placeholder='Release date'>";
     echo "<br>";
 
+echo "<label for='controller'>How many controller does it have: </label>";
+echo "<br>";
+echo "<input type='text' name='controller' placeholder='controller'>";
+echo "<br>";
+
+
     echo "<label for='bit'>How many bit does it have: </label>";
     echo "<br>";
     echo "<input type='bit' name='bit' placeholder='bit'>";
@@ -42,8 +65,19 @@ echo "<br>";
     echo "<br>";
     echo "<input type='submit' name='submit' value='Login'>";
 
+
     echo "</form>";
+    echo"<br>";
     echo "</div>";
+
+
+    echo"<img src='images/Playstation5.png' id='ps' alt='Playstation 5'>";
+
+
+
+    echo"<img src='images/XboxX.png' id='xboxX' alt='XboxX'>";
+
+
 
 echo "</body>";
 

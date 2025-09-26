@@ -4,9 +4,9 @@
         //they should not be stored in plain text in open code here. can be stored in a file or set them as  environment verlable in web server software
         $servername = "localhost"; //had to change this variable name as it fought against the adim reg
 
-        $dbusername = "gconsoleinsert";
+        $dbusername = "root"; //shound not use root in a productive. anyone will have total right to the datebase
 
-        $dbpassword = 'password1g';
+        $dbpassword = '';
 
         $dbname = "gconsole";
 

@@ -40,25 +40,26 @@ echo"<body>";
                 echo "<figcaption>The 3DS</figcaption>";
             echo "</figure>";
 
-            echo"<figure id='Ps5'>";
+            echo"<figure>";
                 echo"<img src='images/Playstation5.png' alt='Playstation 5'>";
                 echo"<figcaption>The Playstation 5</figcaption>";
             echo"</figure>";
 
-            echo"<figure id='switch'>";
-                echo"<img src='images/Switch.jpg' alt='Switch'>";
+            echo"<figure>";
+                echo"<img src='images/switch.png' alt='Switch'>";
                 echo"<figcaption>The Switch</figcaption>";
             echo"</figure>";
 
-            echo"<figure id='switch2'>";
-                echo"<img src='images/Switch2.jpg' alt='Switch 2'>";
+            echo"<figure>";
+                echo"<img src='images/Switch2.png' alt='Switch 2'>";
                 echo"<figcaption>The Switch 2</figcaption>";
             echo"</figure>";
 
-            echo"<figure id='xboxX'>";
-                echo"<img src='images/XboxX.jpg' alt='XboxX'>";
+            echo"<figure>";
+                echo"<img src='images/XboxX.png' alt='XboxX'>";
                 echo"<figcaption>The XboxX</figcaption>";
             echo"</figure>";
+
         echo"</div>";
 
     echo"</div>";

@@ -35,13 +35,13 @@ echo"<br>";
 
     echo"</div>";
 
-    echo"<figure id='DreamCast'>";
-      echo"<img src='images/Dreamcast.png' alt='Dreamcast'>";
-    echo"</figure>";
 
-    echo "<figure id='3DS'>";
-        echo "<img src='images/3DS.png' alt='3DS'>";
-    echo "</figure>";
+      echo"<img src='images/Dreamcast.png' id='DreamCast' alt='Dreamcast'>";
+
+
+
+      echo "<img src='images/3DS.png' id='DS' alt='3DS'>";
+
 
 
 
