@@ -1,8 +1,9 @@
 <?php
 
-function new_console($conn, $post){
-    try{
-        $sql = "INSERT INTO console (Manufacturer, C_name, Release_date, Controller_no, Bit) VALUES (?,?,?,?,?)" ; //we are doing a prepared statement
+function new_console($conn, $post)
+{
+    try {
+        $sql = "INSERT INTO console (Manufacturer, C_name, Release_date, Controller_no, Bit) VALUES (?,?,?,?,?)"; //we are doing a prepared statement
         $stmt = $conn->prepare($sql);  //prepare to sql
 
         $stmt->bindParam(1, $post['Manufacturer']); //bind parameters for seurity
@@ -13,24 +14,26 @@ function new_console($conn, $post){
 
         $stmt->execute(); //run the query to insert
         $conn = null; // closes the connection so cant be abused
-    }catch (PDOException $e){
-        error_log('Console datebase error: '. $e->getMessage());
-        throw new Exception('Console database error'. $e);
-    } catch (Exception $e){
-        error_log('Console error: '. $e->getMessage());
-        throw new Exception('Console database error'. $e->getMessage());
+    } catch (PDOException $e) {
+        error_log('Console datebase error: ' . $e->getMessage());
+        throw new Exception('Console database error' . $e);
+    } catch (Exception $e) {
+        error_log('Console error: ' . $e->getMessage());
+        throw new Exception('Console database error' . $e->getMessage());
     }
 
 
-function user_message(){
-    if(isset($_SESSION['usermessage'])){
-    $message = "<p>" $_SESSION['usermessage'];
-    unset($_SESSION['usermessage']);
-    return $message;}
-} else{
-      $message="";
-      return $message;
+    function user_message()
+    {
+        if (isset($_SESSION['usermessage'])) {
+            $message = "<p>" . $_SESSION['usermessage'] . "</p>";
+            unset($_SESSION['usermessage']);
+            return $message;
+        } else {
+            return "";
+        }
     }
 }
+
 
 
