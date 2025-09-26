@@ -13,9 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }
 }
 
-
-
-
 echo "<!doctype html>";
 echo "<html>";
 
@@ -49,10 +46,10 @@ echo "<br>";
     echo "<input type='text' name='date' placeholder='Release date'>";
     echo "<br>";
 
-echo "<label for='controller'>How many controller does it have: </label>";
-echo "<br>";
-echo "<input type='text' name='controller' placeholder='controller'>";
-echo "<br>";
+    echo "<label for='controller'>How many controller does it have: </label>";
+    echo "<br>";
+    echo "<input type='text' name='controller' placeholder='controller'>";
+    echo "<br>";
 
 
     echo "<label for='bit'>How many bit does it have: </label>";

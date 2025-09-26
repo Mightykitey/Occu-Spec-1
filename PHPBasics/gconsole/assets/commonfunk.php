@@ -6,7 +6,7 @@ function new_console($conn, $post)
         $sql = "INSERT INTO console (Manufacturer, C_name, Release_date, Controller_no, Bit) VALUES (?,?,?,?,?)"; //we are doing a prepared statement
         $stmt = $conn->prepare($sql);  //prepare to sql
 
-        $stmt->bindParam(1, $post['Manufacturer']); //bind parameters for seurity
+        $stmt->bindParam(1, $post['Manufacturer']); //bind parameters for security
         $stmt->bindParam(2, $post['name']); // binding the data from my form. which make it more secured from a sql infections
         $stmt->bindParam(3, $post['date']);
         $stmt->bindParam(4, $post['controller']);
