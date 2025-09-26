@@ -2,7 +2,7 @@
 
 session_start();
 require_once("assets/dabco.php");
-require_once("assets/config.php");
+require_once("assets/commonfunk.php");
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
