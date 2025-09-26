@@ -15,7 +15,22 @@ function new_console($conn, $post){
         $conn = null; // closes the connection so cant be abused
     }catch (PDOException $e){
         error_log('Console datebase error: '. $e->getMessage());
-        throw new Exception('Console database error'. $e);}
+        throw new Exception('Console database error'. $e);
+    } catch (Exception $e){
+        error_log('Console error: '. $e->getMessage());
+        throw new Exception('Console database error'. $e->getMessage());
+    }
 
+
+function user_message(){
+    if(isset($_SESSION['usermessage'])){
+    $message = "<p>" $_SESSION['usermessage'];
+    unset($_SESSION['usermessage']);
+    return $message;}
+} else{
+      $message="";
+      return $message;
+    }
+}
 
 

@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once("assets.dabco");
-require_once("");
+require_once("assets/dabco.php");
+require_once("assets/config.php");
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
