@@ -37,7 +37,7 @@ function user_message()
 //check to make sure that usernames are unique, if the same name exists. you may not use.
 function only_user($conn,$username){
     try{
-        $sql = "SELECT * FROM user WHERE username = ?"; //set up the sql statement
+        $sql = "SELECT username FROM user WHERE username = ?"; //set up the sql statement
         $stmt = $conn->prepare($sql);   //prepares
         $stmt->bindparam(1, $username);
         $stmt->execute();    //run the sql code
