@@ -21,9 +21,8 @@ function new_console($conn, $post)
         error_log('Console error: ' . $e->getMessage());
         throw new Exception('Console database error' . $e->getMessage());
     }
-
-
-    function user_message()
+}
+function user_message()
     {
         if (isset($_SESSION['usermessage'])) {
             $message = "<p>" . $_SESSION['usermessage'] . "</p>";
@@ -32,7 +31,6 @@ function new_console($conn, $post)
         } else {
             return "";
         }
-    }
 }
 
 
@@ -62,28 +60,9 @@ function only_user($conn,$username){
 }
 
 
-
-    if (isset($_SESSION["usermessage"])) { // checks for the session variable being set
-
-        if(str_contains($_SESSION["usermessage"],"ERROR")) {
-            $msg = "<div id='error'> USER MESSAGE: " . $_SESSION["usermessage"] . "</div>";
-        } else {
-            $msg = "<div id='cor'> USER MESSAGE: " . $_SESSION["usermessage"] . "</div>";
-        }
-
-        $_SESSION["usermessage"] = '';
-        unset($_SESSION["usermessage"]); //
-        return $msg;
-// = 'USER MESSAGE: ' . $_SESSION["msg"]; // echos out the stored error from session
-    } else {
-        return "";
-    }
-
-
-
 function reg_user($conn, $post){
     try{
-        $sql = "INSERT INTO user (Username, password, Signupdate, Dateofbirth,Country) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO user (Username, password, Signupdate, Dateofbirth, Country) VALUES (?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
 
         $stmt->bindParam(1, $post['username']);
@@ -98,10 +77,7 @@ function reg_user($conn, $post){
         return true;
 
 
-    }catch(PDOException $e){
-        error_log("There an error in the user table: " . $e->getMessage());
-        throw new Exception('There is an error in the user table' . $e);
-    }catch(Exception $e){
+    }catch(PDOException|Exception $e){
         error_log("There an error in the user table: " . $e->getMessage());
         throw new Exception('There is an error in the user table' . $e);
     }

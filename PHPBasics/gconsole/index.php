@@ -1,8 +1,16 @@
 <?php
 
-session_start();
+if(!isset($_GET['message'])) {
+    session_start();
+    $message = false;
+}else{
+    $message = htmlspecialchars(urldecode($_GET['message']));
+}
+
+
 
 require_once "assets/dabco.php";
+require_once "assets/commonfunk.php";
 
 echo"<!doctype html>";
 echo"<html>";
@@ -59,6 +67,13 @@ echo"<body>";
                 echo"<img src='images/XboxX.png' alt='XboxX'>";
                 echo"<figcaption>The XboxX</figcaption>";
             echo"</figure>";
+
+            if(!$message){
+                echo user_message();
+            }else{
+                echo$message;
+            }
+
 
         echo"</div>";
     echo"</div>";
