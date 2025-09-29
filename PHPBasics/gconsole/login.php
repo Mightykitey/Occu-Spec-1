@@ -1,13 +1,17 @@
 <?php
 
 session_start();
+require_once("assets/dabco.php");
+require_once("assets/commonfunk.php");
+
+
 if (isset($_SESSION["user"])) {
     $_SESSIOM['usermessage'] = 'ERROR: You are already logged in!';
     header("location: index.php");
     exit;
 }
 
-elseif ($_SESSION["REQUEST_METHOD"] == 'POST') {
+elseif ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $usr = login(dabco_insert(), $_POST);
 
     if ($usr && password_verify($_POST['password'],$usr['password'])) {

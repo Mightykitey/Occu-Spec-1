@@ -61,7 +61,6 @@ echo"<body>";
             echo"</figure>";
 
         echo"</div>";
-        echo user_message();
     echo"</div>";
 
 echo"</body>";
