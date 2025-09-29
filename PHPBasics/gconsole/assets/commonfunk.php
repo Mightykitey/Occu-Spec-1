@@ -83,7 +83,7 @@ function only_user($conn,$username){
 
 function reg_user($conn, $post){
     try{
-        $sql = "INSERT INTO user (Username, password, signupdate, Dateofbirth,Country) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO user (Username, password, Signupdate, Dateofbirth,Country) VALUES (?,?,?,?,?)";
         $stmt = $conn->prepare($sql);
 
         $stmt->bindParam(1, $post['username']);
