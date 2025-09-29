@@ -36,4 +36,49 @@ function new_console($conn, $post)
 }
 
 
+//check to make sure that usernames are unique, if the same name exists. you may not use.
+function only_user($conn,$username){
+    try{
+        $sql = "SELECT * FROM user WHERE username = ?"; //set up the sql statement
+        $stmt = $conn->prepare($sql);   //prepares
+        $stmt->bindparam(1, $username);
+        $stmt->execute();    //run the sql code
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    catch(PDOException $e){//catch error
+        // Log the error (crucial!)
+        error_log("There an error in the user table: " . $e->getMessage());
+        // Throw the exception
+        throw $e;   // Re-throw the exception
+    }
+}
+
+function usr_msg()
+{
+
+
+    if (isset($_SESSION["usermessage"])) { // checks for the session variable being set
+
+        if(str_contains($_SESSION["usermessage"],"ERROR")) {
+            $msg = "<div id='error'> USER MESSAGE: " . $_SESSION["usermessage"] . "</div>";
+        } else {
+            $msg = "<div id='cor'> USER MESSAGE: " . $_SESSION["usermessage"] . "</div>";
+        }
+
+        $_SESSION["usermessage"] = '';
+        unset($_SESSION["usermessage"]); //
+        return $msg;
+// = 'USER MESSAGE: ' . $_SESSION["msg"]; // echos out the stored error from session
+    } else {
+        return "";
+    }
+}
 

@@ -5,12 +5,8 @@ require_once("assets/dabco.php");
 require_once("assets/commonfunk.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
-    try{
-        new_console(dabco_insert(), $_POST); //calling the subruten
+
         $_SESSION['usermessage'] = "Success console registered!";
-    }catch(Exception $e){
-        $_SESSION['usermessage'] = $e->getMessage();
-    }
 }
 
 echo "<!doctype html>";

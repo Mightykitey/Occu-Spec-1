@@ -1,8 +1,12 @@
 <?php
 
 session_start();
+ require_once "assets/dabco.php";
+ require_once "assets/commonfunk.php";
 
-
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $_SESSION['usermessage'] = "Result of only user: " . only_user(dabco_insert(),$_POST["username"]);
+}
 
 echo "<!doctype html>";
 echo "<html>";
@@ -21,7 +25,7 @@ echo "<br>";
 echo "<br>";
 
     echo "<div class='form-container'>";
-    echo "<form method='post' action='login.php'>";
+    echo "<form method='post' action=''>";
 
     echo "<label for='username'>Username: </label>";
     echo "<br>";
@@ -54,7 +58,7 @@ echo "<br>";
 
 echo "</form>";
 
-
+echo usr_msg();
 
         echo"<img src='images/switch.png' id='switch' alt='Switch'>";
 
