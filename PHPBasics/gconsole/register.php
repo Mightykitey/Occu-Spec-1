@@ -5,7 +5,17 @@ session_start();
  require_once "assets/commonfunk.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $_SESSION['usermessage'] = "Result of only user: " . only_user(dabco_insert(),$_POST["username"]);
+
+    if(!only_user(dabco_insert(), $_POST["username"])){
+        IF(reg_user(dabco_insert(), $_POST)){
+            $_SESSION["usermessage"] = 'User registered successfully!';
+        }else{
+            $_SESSION["usermessage"] = 'ERROR: You are not registered successfully!';
+        }
+    }else{
+        $_SESSION["usermessage"] = 'ERROR';
+    }
+
 }
 
 echo "<!doctype html>";
@@ -58,7 +68,6 @@ echo "<br>";
 
 echo "</form>";
 
-echo usr_msg();
 
         echo"<img src='images/switch.png' id='switch' alt='Switch'>";
 

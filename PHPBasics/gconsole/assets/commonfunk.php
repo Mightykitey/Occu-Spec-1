@@ -61,8 +61,6 @@ function only_user($conn,$username){
     }
 }
 
-function usr_msg()
-{
 
 
     if (isset($_SESSION["usermessage"])) { // checks for the session variable being set
@@ -80,5 +78,58 @@ function usr_msg()
     } else {
         return "";
     }
+
+
+
+function reg_user($conn, $post){
+    try{
+        $sql = "INSERT INTO user (Username, password, signupdate, Dateofbirth,Country) VALUES (?,?,?,?,?)";
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindParam(1, $post['username']);
+        $hpswd= password_hash($post['password'], PASSWORD_DEFAULT);
+        $stmt->bindParam(2, $hpswd);
+        $stmt->bindParam(3, $post['date']);
+        $stmt->bindParam(4, $post['birth']);
+        $stmt->bindParam(4, $post['country']);
+
+        $stmt->execute();
+        $conn = null;
+        return true;
+
+
+    }catch(PDOException $e){
+        error_log("There an error in the user table: " . $e->getMessage());
+        throw new Exception('There is an error in the user table' . $e);
+    }catch(Exception $e){
+        error_log("There an error in the user table: " . $e->getMessage());
+        throw new Exception('There is an error in the user table' . $e);
+    }
 }
 
+function login($conn, $post){
+    try{
+        $sql = "SELECT * FROM user WHERE username = ?"; //set up the sql statement. * get all the fields form teh user
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindParam(1, $post['username']); // binds the parameters to executes to be more secure
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC); // brings back the results
+        $conn = null;
+
+        if($result){
+            return $result;
+        }else{
+            $_SESSION["usermessage"] = 'USER NOT FOUND';
+            header("location: index.php");
+            exit();
+        }
+
+
+    }catch(Exception $e){
+        $_SESSION["usermessage"] = 'User login'.$e->getMessage();
+        header("location: index.php");
+        exit();
+    }
+
+}

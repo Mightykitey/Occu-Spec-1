@@ -1,5 +1,28 @@
 <?php
 
+session_start();
+if (isset($_SESSION["user"])) {
+    $_SESSIOM['usermessage'] = 'ERROR: You are already logged in!';
+    header("location: index.php");
+    exit;
+}
+
+elseif ($_SESSION["REQUEST_METHOD"] == 'POST') {
+    $usr = login(dabco_insert(), $_POST);
+
+    if ($usr && password_verify($_POST['password'],$usr['password'])) {
+        $_SESSION["user"]=true;
+        $_SESSION["usermessage"] = 'SUCCESS: User logged in successfully!';
+        $_SESSION["UserID"] = $usr['USER_id'];
+        header("location: index.php");
+        exit;
+    }else{
+        $_SESSION["usermessage"] = 'ERROR: Wrong password!';
+        header("location: index.php");
+        exit;
+    }
+}
+
 echo"<!doctype html>";
 echo"<html>";
 
