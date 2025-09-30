@@ -70,7 +70,7 @@ function reg_user($conn, $post){
         $stmt->bindParam(2, $hpswd);
         $stmt->bindParam(3, $post['date']);
         $stmt->bindParam(4, $post['birth']);
-        $stmt->bindParam(4, $post['country']);
+        $stmt->bindParam(5, $post['country']);
 
         $stmt->execute();
         $conn = null;

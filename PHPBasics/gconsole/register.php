@@ -6,7 +6,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    if(!only_user(dabco_insert(), $_POST)){
+    if(!only_user(dabco_insert(), $_POST['username'])){
 
         IF(reg_user(dabco_insert(), $_POST)){
             $_SESSION["usermessage"] = 'User registered successfully!';
