@@ -38,7 +38,7 @@ foreach ($staff as $staf) {
     } elseif ($staf['job']='nur'){
         $role = "Nurse";
     }
-    echo "<option value=".$staf['docid'].">".$role." ".$staf['fname']." ".$staf['lname']."Room".$staf['room']"</option>";
+    echo " <option value=".$staf['docid'].">".$role." ".$staf['fname']." ".$staf['lname']."Room".$staf['room'];"</option>";
 }
 
 echo "</select>";

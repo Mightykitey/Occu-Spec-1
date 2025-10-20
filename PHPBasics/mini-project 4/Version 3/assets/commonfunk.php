@@ -103,7 +103,7 @@ function login($conn, $post)
 
 function audititor($conn, $patid, $code, $long)
 {
-    $sql = "INSERT INTO audit (date, patient_id, code, longdesc) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO audit (date, patient_id, code, desc) VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $date = date("Y-m-d");
     $stmt->bindParam(1, $date);
@@ -128,7 +128,7 @@ function hasPassword($string)
 }
 
 function get_staff($conn){
-sql = "SELECT doctor_id, job, fname, lname, room FROM doctor where job != ? ORDER BY jobDESC"
+$sql = "SELECT staff_id, job, fname, lname, room, email FROM staff where job != ? ORDER BY job DESC";
 
     $stmt = $conn->prepare($sql);
     $exclude_job = "adm";
