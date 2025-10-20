@@ -42,5 +42,5 @@ echo "</body>"; // Close body tag
 echo "</html>"; // Close HTML tag
 ?>
 
-// epoch time is simple and easier, date and time is stored in one coloum and it has a high percision
+// epoch time is simple and easier, date and time is stored in one coloum, and it has a high percision
 //
