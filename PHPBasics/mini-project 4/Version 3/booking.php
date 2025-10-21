@@ -66,7 +66,6 @@ echo "<input type='text' name='booking' value='What are you booking for?'>";
 echo "<br>";
 
 // Submit button is missing — should be added to make the form work
-echo "<input type='submit' value='Register'>";
 
 echo "</form>";
 echo "</div>";
