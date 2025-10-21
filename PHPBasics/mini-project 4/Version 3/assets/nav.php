@@ -15,10 +15,10 @@ echo "<ul>";
 echo "<li><a href='registration.php'>Registration</a></li>";
 
 // Navigation item: Placeholder link for booking functionality
-echo "<li><a href='book.php'>Booking</a></li>";
+echo "<li><a href='book.php'>Book</a></li>";
 
 // Navigation item: Placeholder link for booked appointments
-echo "<li><a href='.'>Booked</a></li>";
+echo "<li><a href='booking.php'>Booking</a></li>";
 
 // Navigation item: Placeholder link for login
 echo "<li><a href='login.php'>Login</a></li>";

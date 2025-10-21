@@ -14,11 +14,11 @@ if (isset($_SESSION["user"])) {
 elseif ($_SERVER["REQUEST_METHOD"] === 'POST') {
     $usr = staff_login(dabco_select(), $_POST);
 
-    if ($usr && docPassword($_POST['password'],$usr['password'])) {
+    if ($usr && stfPassword($_POST['password'],$usr['password'])) {
         $_SESSION["user"]=true;
         $_SESSION["usermessage"] = 'SUCCESS: User logged in successfully!';
-        $_SESSION["docid"] = $usr['doctor_id'];
-        S_audititor(dabco_insert(), $_SESSION['docid'], "log", "User has been successfully logged in.");
+        $_SESSION["stfid"] = $usr['staff_id'];
+        S_audititor(dabco_insert(), $_SESSION['stfid'], "log", "User has been successfully logged in.");
         header("location: index.php");
         exit;
     }else{

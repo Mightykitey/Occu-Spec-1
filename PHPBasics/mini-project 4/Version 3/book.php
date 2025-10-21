@@ -2,17 +2,31 @@
 
 session_start();
 
+require_once "assets/commonfunk.php";
 require_once "assets/staff_com.php";
 require_once "assets/dabco.php";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") { // on any page this block of code should be here so  if anywhere else the redirect can go wrong
 
-    $stmp=$_POST['apt_date'].''.$_POST['apt_time'];
-    $epoch=strtotime($stmp);
+    try {
 
-    echo $epoch;
-    echo "<br>";
-    echo time();
+        $stmp = $_POST['apt_date'] . '' . $_POST['apt_time'];
+        $epoch = strtotime($stmp);
+       if(commit_bookimg(dabco_insert(),$epoch)){
+           $_SESSION['usermessage'] = "Your book has been committed!";
+           header('Location: booking.php');
+           exit();
+       }else{
+           $_SESSION['usermessage'] = "Error booking has failed!";
+       }
+
+    }
+    catch(PDOException $e){
+        $_SESSION["error"] = "Error: " . $e->getMessage();
+    }catch(Exception $e){
+        $_SESSION["error"] = "Error: " . $e->getMessage();
+    }
+
 }
 
 echo "<!doctype html>";
@@ -56,29 +70,9 @@ foreach ($staff as $staf) {
     } elseif ($staf['job']='nur'){
         $role = "Nurse";
     }
-    echo " <option value=".$staf['stafid'].">".$role." ".$staf['fname']." ".$staf['lname']."Room".$staf['room'];"</option>";
+    echo " <option value=".$staf['stafid'].">".$role." ".$staf['fname']." ".$staf['lname']."Room".$staf['rom'];"</option>";
 }
 echo"</select>";
-echo "<br>";
-
-// First Name field
-echo "<label for='fname'>Name:  </label>";
-echo "<input type='text' name='fname' placeholder='Fist Name'>"; // NOTE: value should be empty or placeholder
-echo "<br>";
-
-// Last Name field
-echo "<label for='lname'>Surname:  </label>";
-echo "<input type='text' name='lname' placeholder='last Name'>";
-echo "<br>";
-
-// Email field
-echo "<label for='email'>Email:  </label>";
-echo "<input type='text' name='email' placeholder='Email'>";
-echo "<br>";
-
-//booking field
-echo "<label for='booking'>What are you booking for?  </label>";
-echo "<input type='text' name='booking' placeholder='What are you booking for?'>";
 echo "<br>";
 
 // Submit button is missing — should be added to make the form work
@@ -87,9 +81,12 @@ echo "<input type='submit' placeholder='Register'>";
 echo "</form>";
 echo "</div>";
 
+echo user_message();
+echo "</body>";
+echo "</html>";
+?>
 
 
 
 
 
-echo "</select>";

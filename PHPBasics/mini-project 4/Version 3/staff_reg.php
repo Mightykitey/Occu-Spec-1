@@ -8,7 +8,7 @@ require_once "assets/dabco.php";      // Database connection functions
 
 // Check if the form was submitted using the POST method
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (!only_doctor(dabco_select(), $_POST['email'])) {
+    if (!only_staff(dabco_select(), $_POST['email'])) {
 
         if (new_staff(dabco_insert(), $_POST)) {
             $_SESSION["usermessage"] = 'User registered successfully!';

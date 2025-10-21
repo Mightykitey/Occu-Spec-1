@@ -127,7 +127,22 @@ function hasPassword($string)
     }
 }
 
+function commit_bookimg($conn, $epoch)
+{
+    $sql = "INSERT INTO booking (epoch,patient_id, staff_id, appdate, bookdon) VALUES (?,?,?,?)";
+    $stmt = $conn->prepare($sql);
 
+    $stmt->bindParam(1, $_SESSION['patid']);
+    $stmt->bindParam(2, $_SESSION['stfid']);
+    $stmt->bindParam(3, $epoch);
+    $stmt->bindParam(4,time());
+
+    $stmt->execute();
+    $conn = null;
+    return true;
+
+
+}
 
 
 

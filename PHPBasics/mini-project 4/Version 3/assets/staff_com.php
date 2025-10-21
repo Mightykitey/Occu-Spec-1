@@ -62,16 +62,6 @@ function new_staff($conn, $post)
     }
 }
 
-function user_message()
-{
-    if (isset($_SESSION['usermessage'])) {
-        $message = "<p>" . $_SESSION['usermessage'] . "</p>";
-        unset($_SESSION['usermessage']);
-        return $message;
-    } else {
-        return "";
-    }
-}
 
 
 
