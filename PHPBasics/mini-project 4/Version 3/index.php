@@ -29,13 +29,7 @@ echo "</div>"; // Close the main container div
 echo "<p>Hello world</p>"; // Output a simple paragraph for demonstration or testing
 
 // Attempt to connect to the database using a function (likely defined in dabco.php)
-try {
-    $conn = dabco_insert(); // Call function to establish database connection (returns PDO object)
-    echo "Connected successfully"; // Display success message
-} catch (PDOException $e) {
-    // If connection fails, display the error message
-    echo $e->getMessage();
-}
+echo user_message();
 
 echo "</body>"; // Close body tag
 

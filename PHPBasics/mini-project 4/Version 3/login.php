@@ -5,24 +5,21 @@ require_once("assets/dabco.php");
 require_once("assets/commonfunk.php");
 
 
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["patid"])) {
     $_SESSION['ERROR'] = 'ERROR: You are already logged in!';
     header("location: index.php");
     exit;
-}
+}elseif($_SERVER["REQUEST_METHOD"] === 'POST') {
+    $usr = login(dabco_insert(), $_POST['email']);
 
-elseif ($_SERVER["REQUEST_METHOD"] === 'POST') {
-    $usr = login(dabco_select(), $_POST);
-
-    if ($usr && hasPassword($_POST['password'],$usr['password'])) {
-        $_SESSION["user"]=true;
+    if ($usr && password_verify($_POST['pwd'],$usr['pwd'])) {
+        $_SESSION["patid"]=$usr['patient_id'];
         $_SESSION["usermessage"] = 'SUCCESS: User logged in successfully!';
-        $_SESSION["patid"] = $usr['patient_id'];
         audititor(dabco_insert(), $_SESSION['patid'], "log", "User has been successfully logged in.");
         header("location: index.php");
         exit;
-    }else{
-        $_SESSION["usermessage"] = 'ERROR: Wrong password!';
+    }else if(!$usr){
+        $_SESSION["usermessage"] = 'ERROR: No user found!';
         header("location: index.php");
         exit;
     }

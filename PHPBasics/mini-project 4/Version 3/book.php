@@ -9,22 +9,27 @@ require_once "assets/dabco.php";
 if ($_SERVER["REQUEST_METHOD"] === "POST") { // on any page this block of code should be here so  if anywhere else the redirect can go wrong
 
     try {
-
-        $stmp = $_POST['apt_date'] . '' . $_POST['apt_time'];
+        $stmp = $_POST['apt_date'] . ' ' . $_POST['apt_time'];
         $epoch = strtotime($stmp);
        if(commit_bookimg(dabco_insert(),$epoch)){
            $_SESSION['usermessage'] = "Your book has been committed!";
-           header('Location: booking.php');
+           header('Location: book.php');
            exit();
        }else{
            $_SESSION['usermessage'] = "Error booking has failed!";
+           header('Location: book.php');
+           exit();
        }
 
     }
     catch(PDOException $e){
-        $_SESSION["error"] = "Error: " . $e->getMessage();
-    }catch(Exception $e){
-        $_SESSION["error"] = "Error: " . $e->getMessage();
+        $_SESSION["usermessage"] = "Error: " . $e->getMessage();
+        header('Location: book.php');
+        exit();
+    } catch(Exception $e){
+        $_SESSION["usermessage"] = "Error: " . $e->getMessage();
+        header('Location: book.php');
+        exit();
     }
 
 }
@@ -47,30 +52,33 @@ echo "</div>";
 
 // Content area with the registration form
 echo "<div class='content'>";
-echo "<form method='post' action=''>"; // Form posts back to the same page
-echo "<form>";
-echo "<br>";
 
+echo "<br>";
+echo user_message();
+
+echo "<form action='' method='post'>"; // Form posts back to the same page
 $staff = get_staff(dabco_select());
 
 echo"<label for='apt_time'>Appointment Time: </label> ";
-echo"<input type='time' name='apt_time' id='apt_time' required>";
+echo"<input type='time' name='apt_time' required>";
+
 echo "<br>";
 
 echo"<label for='apt_date'>Appointment Date: </label>";
-echo"<input type='date' name='apt_date' id='apt_date' required>";
+echo"<input type='date' name='apt_date' required>";
+
 echo "<br>";
 
 echo "<select name='staff'>";
 
 foreach ($staff as $staf) {
 
-    if($staf['job']="doc"){
+    if($staf['job']="Doc"){
         $role = "Doctor";
-    } elseif ($staf['job']='nur'){
+    } elseif ($staf['job']='Nur'){
         $role = "Nurse";
     }
-    echo " <option value=".$staf['stafid'].">".$role." ".$staf['fname']." ".$staf['lname']."Room".$staf['rom'];"</option>";
+    echo "<option value='".$staf['staff_id']."'>".$role." ".$staf['fname']." ".$staf['lname']." Room ".$staf['rom']."</option>";
 }
 echo"</select>";
 echo "<br>";
@@ -81,7 +89,7 @@ echo "<input type='submit' placeholder='Register'>";
 echo "</form>";
 echo "</div>";
 
-echo user_message();
+
 echo "</body>";
 echo "</html>";
 ?>

@@ -40,7 +40,7 @@ function new_patients($conn, $post)
         $stmt->bindParam(4, $post['email']); // Bind email
 
         // Hash the password using SHA-256 before storing it
-        $hpwd = hash('sha256', $post['pwd']); // Secure the password by hashing
+        $hpwd = password_hash($post['pwd'], PASSWORD_DEFAULT); // Secure the password by hashing
         $stmt->bindParam(5, $hpwd);           // Bind the hashed password, not the plain text
 
         // Execute the prepared statement to insert the data
@@ -73,43 +73,33 @@ function user_message()
 
 function login($conn, $post)
 {
-    try {
-        $sql = "SELECT patient_id, password FROM patients WHERE email,  = ?"; //set up the sql statement. * get all the fields form teh user
+        $sql = "SELECT patient_id, pwd FROM patients WHERE email = ?";
         $stmt = $conn->prepare($sql);
-
-        $stmt->bindParam(1, $post['email']);    // binds the parameters to executes to be more secure
+        $stmt->bindParam(1, $post);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC); // brings back the results
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $conn = null;
 
         if ($result) {
             return $result;
         } else {
-            $_SESSION["usermessage"] = 'patient NOT FOUND';
-            header("location: index.php");
-            exit();
+            return false;
         }
-
-
-    } catch (Exception $e) {
-        $_SESSION["usermessage"] = 'User login' . $e->getMessage();
-        header("location: index.php");
-        exit();
-    }
 
 }
 
 
 
-function audititor($conn, $patid, $code, $long)
+
+function audititor($conn, $patid, $code, $ldesc)
 {
-    $sql = "INSERT INTO audit (date, patient_id, code, desc) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO audit (date, patient_id, code, longdesc) VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $date = date("Y-m-d");
     $stmt->bindParam(1, $date);
     $stmt->bindParam(2, $patid);
     $stmt->bindParam(3, $code);
-    $stmt->bindParam(4, $long);
+    $stmt->bindParam(4, $ldesc);
 
     $stmt->execute();
     $conn = null;
@@ -129,19 +119,18 @@ function hasPassword($string)
 
 function commit_bookimg($conn, $epoch)
 {
-    $sql = "INSERT INTO booking (epoch,patient_id, staff_id, appdate, bookdon) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO booking (patient_id, staff_id, appdate, bookdon) VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql);
 
     $stmt->bindParam(1, $_SESSION['patid']);
-    $stmt->bindParam(2, $_SESSION['stfid']);
+    $stmt->bindParam(2, $_POST['staff']);
     $stmt->bindParam(3, $epoch);
-    $stmt->bindParam(4,time());
+    $temp = time();
+    $stmt->bindParam(4,$temp);
 
     $stmt->execute();
     $conn = null;
     return true;
-
-
 }
 
 
