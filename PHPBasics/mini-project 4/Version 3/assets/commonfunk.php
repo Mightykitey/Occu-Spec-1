@@ -127,19 +127,7 @@ function hasPassword($string)
     }
 }
 
-function get_staff($conn){
-$sql = "SELECT staff_id, job, fname, lname, room, email FROM staff where job != ? ORDER BY job DESC";
 
-    $stmt = $conn->prepare($sql);
-    $exclude_job = "adm";
-
-    $stmt->bindParam(1, $exclude_job);
-
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);  // it fetch everything that maches
-    $conn = null;
-    return $result;
-}
 
 
 

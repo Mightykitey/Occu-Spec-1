@@ -14,7 +14,7 @@ function dabco_insert() {
     $servername = "localhost";     // Server address (localhost in this case)
     $dbusername = "root";          // Using 'root' is insecure in production
     $dbpassword = '';              // Empty password — not secure
-    $dbname = "primary oaks surgery"; // Name of the database to connect to
+    $dbname = "primary oaks"; // Name of the database to connect to
 
     try {
         // Create a new PDO connection to the MySQL database
@@ -51,7 +51,7 @@ function dabco_select()
     $servername = "localhost";     // Server address (localhost in this case)
     $dbusername = "root";          // Using 'root' is insecure in production
     $dbpassword = '';              // Empty password — not secure
-    $dbname = "primary oaks surgery"; // Name of the database to connect to
+    $dbname = "primary oaks"; // Name of the database to connect to
 
     try {
         // Create a new PDO connection to the MySQL database

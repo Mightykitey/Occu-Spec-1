@@ -10,9 +10,9 @@ require_once "assets/dabco.php";      // Database connection functions
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!only_doctor(dabco_select(), $_POST['email'])) {
 
-        if (new_doctor(dabco_insert(), $_POST)) {
+        if (new_staff(dabco_insert(), $_POST)) {
             $_SESSION["usermessage"] = 'User registered successfully!';
-            S_audititor(dabco_insert(), only_doctor(dabco_select(), $_POST['email']), "reg", "New doctor registered");
+            S_audititor(dabco_insert(), only_staff(dabco_select(), $_POST['email']), "reg", "New doctor registered");
             header("Location:index.php?message=Registration Successful");
             exit;
 

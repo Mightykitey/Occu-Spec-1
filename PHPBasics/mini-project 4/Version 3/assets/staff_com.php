@@ -1,8 +1,8 @@
 <?php
 
-function only_doctor($conn,$email){
+function only_staff($conn,$email){
     try{
-        $sql = "SELECT email FROM doctor WHERE email = ?"; //set up the sql statement
+        $sql = "SELECT email FROM staff WHERE email = ?"; //set up the sql statement
         $stmt = $conn->prepare($sql);   //prepares
         $stmt->bindparam(1, $email);
         $stmt->execute();    //run the sql code
@@ -27,11 +27,11 @@ function only_doctor($conn,$email){
 
 
 // Function to insert a new patient into the database
-function new_doctor($conn, $post)
+function new_staff($conn, $post)
 {
     try {
         // Prepare an SQL statement with placeholders to insert new patient data
-        $sql = "INSERT INTO doctor (fname, lname, job, email,password ,room) VALUES (?,?,?,?,?,?)"; // Using a prepared statement for security
+        $sql = "INSERT INTO staff (fname, lname, job, email,password ,room) VALUES (?,?,?,?,?,?)"; // Using a prepared statement for security
         $stmt = $conn->prepare($sql);  // Prepare the SQL statement to prevent SQL injection
 
         // Bind the form data to the prepared statement parameters
@@ -75,14 +75,14 @@ function user_message()
 
 
 
-function S_audititor($conn, $docid, $job, $long){
-    $sql = "INSERT INTO staff_audit (job, date, desc, doctor_id) VALUES (?,?,?,?)";
+function S_audititor($conn, $stfid, $job, $long){
+    $sql = "INSERT INTO staff_audit (job, date, desc, staff_id) VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $date = date("Y-m-d");
     $stmt->bindParam(1, $job);
     $stmt->bindParam(2, $date);
     $stmt->bindParam(3, $long);
-    $stmt->bindParam(4, $docid);
+    $stmt->bindParam(4, $stfid);
 
 
     $stmt->execute();
@@ -92,7 +92,7 @@ function S_audititor($conn, $docid, $job, $long){
 function staff_login($conn, $post)
 {
     try {
-        $sql = "SELECT doctor_id, password FROM doctor WHERE email  = ?"; //set up the sql statement. * get all the fields form teh user
+        $sql = "SELECT staff_id, password FROM staff WHERE email  = ?"; //set up the sql statement. * get all the fields form teh user
         $stmt = $conn->prepare($sql);
 
         $stmt->bindParam(1, $post['email']);    // binds the parameters to executes to be more secure
@@ -118,7 +118,7 @@ function staff_login($conn, $post)
 }
 
 
-function docPassword($string){
+function stfPassword($string){
     if(!str_contains($_SESSION['password'],"ERROR")){
         $string = "USER MESSAGE: ". $_SESSION['password'];
         return true;
@@ -126,4 +126,18 @@ function docPassword($string){
         $string = "USER MESSAGE: ". $_SESSION['password'];
         return false;
     }
+}
+
+function get_staff($conn){
+    $sql = "SELECT staff_id, job, fname, lname, rom, email, pwd FROM staff where job != ? ORDER BY job DESC";
+
+    $stmt = $conn->prepare($sql);
+    $exclude_job = "adm";
+
+    $stmt->bindParam(1, $exclude_job);
+
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);  // it fetch everything that maches
+    $conn = null;
+    return $result;
 }
