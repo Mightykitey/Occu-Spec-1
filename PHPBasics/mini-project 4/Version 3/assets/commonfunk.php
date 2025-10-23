@@ -133,7 +133,27 @@ function commit_bookimg($conn, $epoch)
     return true;
 }
 
+function apt_getter($conn)
+{
+    $sql = "SELECT b.booking_id,b.appdate, b.bookdon, s.job, s.fname, s.lname, s.rom 
+        FROM booking b JOIN staff s ON b.staff_id = s.staff_id WHERE b.patient_id = ? 
+                                                               ORDER By b.appdate ASC";
+// this get the rows from each table by giving them b. or s. which them we tell the b is for booking and s is for staff
+    // and where we
+    $stmt = $conn->prepare($sql);
 
+    $stmt->bindParam(1, $_SESSION['patid']);
+    $stmt->execute();
+    $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
+    $conn = null;
+
+    if($result){
+        return $result;
+    }else{
+        return false;
+    }
+
+}
 
 
 
