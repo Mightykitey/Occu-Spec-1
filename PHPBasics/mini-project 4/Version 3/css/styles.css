@@ -50,3 +50,6 @@ img {
     height: 100px;
     clip-path: circle(50%);
 }
+table, th, td {
+    border:1px solid black;
+}

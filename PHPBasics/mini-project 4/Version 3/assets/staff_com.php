@@ -31,7 +31,7 @@ function new_staff($conn, $post)
 {
     try {
         // Prepare an SQL statement with placeholders to insert new patient data
-        $sql = "INSERT INTO staff (fname, lname, job, email,password ,room) VALUES (?,?,?,?,?,?)"; // Using a prepared statement for security
+        $sql = "INSERT INTO staff (fname, lname, job, email,pwd ,rom) VALUES (?,?,?,?,?,?)"; // Using a prepared statement for security
         $stmt = $conn->prepare($sql);  // Prepare the SQL statement to prevent SQL injection
 
         // Bind the form data to the prepared statement parameters
@@ -41,8 +41,8 @@ function new_staff($conn, $post)
         $stmt->bindParam(4, $post['email']); // Bind email
 
         // Hash the password using SHA-256 before storing it
-        $hpwd = hash('sha256', $post['pwd']); // Secure the password by hashing
-        $stmt->bindParam(5, $hpwd);           // Bind the hashed password, not the plain text
+        $hpwd = password_hash($post['pwd'], PASSWORD_DEFAULT); // Secure the password by hashing
+        $stmt->bindParam(5, $hpwd);            // Bind the hashed password, not the plain text
 
         $stmt->bindParam(6, $post['room']);
         // Execute the prepared statement to insert the data
@@ -53,26 +53,36 @@ function new_staff($conn, $post)
         return true;
     } catch (PDOException $e) {
         // Log PDO-related errors (e.g., DB connection issues) without exposing details to the user
-        error_log('Console database error: ' . $e->getMessage());
-        throw new Exception('Console database error: ' . $e->getMessage());
+        error_log(' database error: ' . $e->getMessage());
+        throw new Exception(' database error: ' . $e->getMessage());
     } catch (Exception $e) {
         // Catch any other general exceptions
-        error_log('Console error: ' . $e->getMessage());
-        throw new Exception('Console error: ' . $e->getMessage());
+        error_log(' error: ' . $e->getMessage());
+        throw new Exception(' error: ' . $e->getMessage());
     }
 }
 
+function staff_message()
+{
+    if (isset($_SESSION['staffmessage'])) {
+        $message = "<p>" . $_SESSION['staffmessage'] . "</p>";
+        unset($_SESSION['staffmessage']);
+        return $message;
+    } else {
+        return "";
+    }
+}
 
 
 
 function S_audititor($conn, $stfid, $job, $long){
     $sql = "INSERT INTO staff_audit (job, date, desc, staff_id) VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql);
-    $date = date("Y-m-d");
-    $stmt->bindParam(1, $job);
-    $stmt->bindParam(2, $date);
-    $stmt->bindParam(3, $long);
-    $stmt->bindParam(4, $stfid);
+    $dte = date("Y-m-d");
+    $stmt->bindParam(1, $stfid);
+    $stmt->bindParam(2, $job);
+    $stmt->bindParam(3, $dte);
+    $stmt->bindParam(4, $long);
 
 
     $stmt->execute();

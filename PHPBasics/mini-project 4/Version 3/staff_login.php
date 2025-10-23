@@ -16,13 +16,13 @@ elseif ($_SERVER["REQUEST_METHOD"] === 'POST') {
 
     if ($usr && stfPassword($_POST['password'],$usr['password'])) {
         $_SESSION["user"]=true;
-        $_SESSION["usermessage"] = 'SUCCESS: User logged in successfully!';
+        $_SESSION["staffmessage"] = 'SUCCESS: User logged in successfully!';
         $_SESSION["stfid"] = $usr['staff_id'];
         S_audititor(dabco_insert(), $_SESSION['stfid'], "log", "User has been successfully logged in.");
         header("location: index.php");
         exit;
     }else{
-        $_SESSION["usermessage"] = 'ERROR: Wrong password!';
+        $_SESSION["staffmessage"] = 'ERROR: Wrong password!';
         header("location: index.php");
         exit;
     }
@@ -43,7 +43,7 @@ echo"<h1>Login page</h1>";
 require_once 'assets/nav.php';
 echo"<br>";
 echo"</div>";
-
+echo staff_message();
 
 echo "<div class='content'>";
 echo"<form method='post'>";
@@ -67,7 +67,7 @@ echo"</form>";
 
 echo"</div>";
 
-echo user_message();
+
 
 
 echo"</body>";

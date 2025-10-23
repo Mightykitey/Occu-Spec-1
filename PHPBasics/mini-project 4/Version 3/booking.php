@@ -11,7 +11,28 @@ require_once "assets/dabco.php";      // Database connection functions
     $_SESSION['usermessage'] = "Error: You are not logged in.";
     header("Location: login.php");
     exit;
-}
+}else if ($_SERVER["REQUEST_METHOD"] === "POST") {
+     if(isset($_POST['appdelete'])){
+         try{
+             if(cancel_apt(dabco_delete(),$_POST['aptid'])){
+                 $_SESSION['usermessage'] = "SUCCESS: Your booking has been cancelled.";
+             }else{
+                 $_SESSION['usermessage'] = "ERROR.";
+
+             }
+
+         }catch (PDOException $e){
+             $_SESSION['message'] = "ERROR: Your booking has not been cancelled.";
+         }catch (Exception $e){
+             $_SESSION['message'] = "ERROR: Your booking has not been cancelled.";
+         }
+
+     }else if (isset($_POST['appdchange'])) {
+         $_SESSION['aptid'] = $_POST['aptid'];
+         header("Location: alt_book.php");
+         exit;
+     }
+ }
 
 // Check if the form was submitted using the POST method
 
@@ -33,6 +54,8 @@ require_once "assets/nav.php"; // Include navigation menu
 echo "</div>";
 
 
+echo "<h2>Your Booking</h2>";
+
 Echo user_message();
 
 
@@ -49,13 +72,23 @@ if (!$apts){
         }else if ($apt['role']="nur"){}
             $role = "Nurse";
     }
+
+    echo "<form action='' method='post'>";
+
     echo "<tr>";
     echo "<td>Date:   ".date('M d, Y @ h:i A',$apt['appdate'])."</td>";
     echo "<td>Made on:    ".date('M d, Y @ h:i A',$apt['bookdon']) . "</td>";
     echo "<td>With:    ".$role. " ".$apt['fname']." ".$apt['lname']." ". "</td>";
     echo "<td>In: ".$apt['rom']."</td>";
+    echo "<td><input type='hidden' name='aptid' value=".$apt['booking_id'].">
+    <input type='submit' name='appdelete' value='Cancel Apt'/>
+    <input type='submit' name='appdchange' value='Change Apt'/></td>";
+
     echo "</tr>";
+    echo "</form>"; // creaating a for each table
 }
+
+
 echo "</table>";
 
 echo "</div>";

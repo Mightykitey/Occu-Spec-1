@@ -11,16 +11,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!only_staff(dabco_select(), $_POST['email'])) {
 
         if (new_staff(dabco_insert(), $_POST)) {
-            $_SESSION["usermessage"] = 'User registered successfully!';
+            $_SESSION["staffmessage"] = 'staff registered successfully!';
             S_audititor(dabco_insert(), only_staff(dabco_select(), $_POST['email']), "reg", "New doctor registered");
             header("Location:index.php?message=Registration Successful");
             exit;
 
         } else {
-            $_SESSION["usermessage"] = 'ERROR: You are not registered!';
+            $_SESSION["staffmessage"] = 'ERROR: You are not registered!';
         }
     } else {
-        $_SESSION["usermessage"] = 'ERROR: Email is already registered!';
+        $_SESSION["staffmessage"] = 'ERROR: Email is already registered!';
     }
 }
 
@@ -41,6 +41,7 @@ echo "<h1>Primary Oaks Surgery</h1>"; // Page heading
 require_once "assets/nav.php"; // Include navigation menu
 echo "</div>";
 
+echo staff_message();
 // Content area with the registration form
 echo "<div class='content'>";
 echo "<form method='post' action=''>"; // Form posts back to the same page
@@ -83,7 +84,7 @@ echo "<br>";
 // Password field
 echo "<label for='password'>Password:  </label>";
 echo "<br>";
-echo "<input type='password' name='password' placeholder='Password'>"; // NOTE: Don't use default value in password fields
+echo "<input type='password' name='pwd' placeholder='Password'>"; // NOTE: Don't use default value in password fields
 echo "<br>";
 
 // Password field
@@ -97,7 +98,7 @@ echo "<input type='submit' placeholder='Register'>";
 
 echo "</form>";
 echo "</div>";
-echo user_message();
+
 echo "</body>";
 echo "</html>";
 ?>

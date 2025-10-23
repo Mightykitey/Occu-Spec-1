@@ -51,12 +51,12 @@ function new_patients($conn, $post)
         return true;
     } catch (PDOException $e) {
         // Log PDO-related errors (e.g., DB connection issues) without exposing details to the user
-        error_log('Console database error: ' . $e->getMessage());
-        throw new Exception('Console database error: ' . $e->getMessage());
+        error_log(' database error: ' . $e->getMessage());
+        throw new Exception(' database error: ' . $e->getMessage());
     } catch (Exception $e) {
         // Catch any other general exceptions
-        error_log('Console error: ' . $e->getMessage());
-        throw new Exception('Console error: ' . $e->getMessage());
+        error_log(' error: ' . $e->getMessage());
+        throw new Exception(' error: ' . $e->getMessage());
     }
 }
 
@@ -155,5 +155,38 @@ function apt_getter($conn)
 
 }
 
+function cancel_apt($conn, $aptid) // this is where you are deleting an apportionment table
+{
+ $sql = "DELETE FROM booking WHERE booking_id = ?";
+ $stmt = $conn->prepare($sql);
+ $stmt->bindParam(1, $aptid);
+ $stmt->execute();
+ $conn = null;
+ return true;
+}
 
+function apt_fetch($conn, $aptid)
+{
+    $SQL = "SELECT * FROM booking WHERE booking_id = ?";
+    // GET ALL STAFF FROM DATABASE WHERE ROLE NOT EQUAL TO 'ADM'
+    $stmt = $conn->prepare($SQL);
 
+    $stmt->bindParam(1, $aptid);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $conn = null;
+    return $result;
+}
+
+function apt_update($conn, $aptid,$aptime)
+{
+    $sql = "UPDATE booking SET staff_id = ?, appdate = ?, bookdon = ? WHERE booking_id = ?";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(1, $_POST['staff']);
+    $stmt->bindParam(2, $aptime);
+    $stmt->bindParam(3, $aptid);
+    $stmt->execute();
+    $conn = null;
+    return true;
+}
