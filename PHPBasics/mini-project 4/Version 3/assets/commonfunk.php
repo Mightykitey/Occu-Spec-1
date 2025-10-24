@@ -192,3 +192,25 @@ function apt_update($conn, $aptid,$aptime)
     $conn = null;
     return true;
 }
+
+function pro_getter($conn)
+{
+    $sql = "SELECT p.patient_id, p.fname, p.lname, p.dob, p.email, p.pwd, a.code, a.date, a.longdesc
+        FROM patients p JOIN audit a WHERE s.patient_id = ? 
+                                                     ORDER By a.date ASC";
+// this get the rows from each table by giving them b. or s. which them we tell the b is for booking and s is for staff
+    // and where we
+    $stmt = $conn->prepare($sql);
+
+    $stmt->bindParam(1, $_SESSION['patid']);
+    $stmt->execute();
+    $result = $stmt->fetchALL(PDO::FETCH_ASSOC);
+    $conn = null;
+
+    if($result){
+        return $result;
+    }else{
+        return false;
+    }
+
+}
