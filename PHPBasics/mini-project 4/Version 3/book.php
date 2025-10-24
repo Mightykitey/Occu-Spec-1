@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { // on any page this block of code s
         $epoch = strtotime($stmp);
        if(commit_bookimg(dabco_insert(),$epoch)){
            $_SESSION['usermessage'] = "Your book has been committed!";
+           book_audititor(dabco_insert(),commit_bookimg(dabco_insert(),$_POST['email']), "book", "Booking commited");
            header('Location: book.php');
            exit();
        }else{

@@ -17,6 +17,7 @@ if (!isset($_SESSION['patid'])) {
     if (apt_update(dabco_insert(),$_SESSION['aptid'],$epoch)){
         $_SESSION['usermessage'] = "SUCCESS: Your appointment updated successfully!";
         unset($_SESSION['aptid']);
+        book_audititor(dabco_insert(),apt_update(dabco_insert()), "abk", "Updated Booking");
         header("Location: book.php");
         exit;
     }else{

@@ -106,6 +106,22 @@ function audititor($conn, $patid, $code, $ldesc)
     return true;
 }
 
+function Book_audititor($conn, $book_id, $code, $ldesc){
+    $sql = "INSERT INTO book_audit(booking_id, code, date, longdesc) VALUES (?,?,?,?) ";
+    $stmt = $conn->prepare($sql);
+
+    $date = date("Y-m-d");
+    $stmt->bindParam(1, $book_id);
+    $stmt->bindParam(2, $code);
+    $stmt->bindParam(3, $date);
+    $stmt->bindParam(4, $ldesc);
+
+    $stmt->execute();
+    $conn = null;
+    return true;
+}
+
+
 function hasPassword($string)
 {
     if (!str_contains($_SESSION['password'], "ERROR")) {
