@@ -12,8 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { // on any page this block of code s
         $stmp = $_POST['apt_date'] . ' ' . $_POST['apt_time'];
         $epoch = strtotime($stmp);
        if(commit_bookimg(dabco_insert(),$epoch)){
+           audititor(dabco_insert(),only_patients(dabco_select(), $_POST['patid']),"bok", "New booking registered" );
+
            $_SESSION['usermessage'] = "Your book has been committed!";
-           book_audititor(dabco_insert(),commit_bookimg(dabco_insert(),$_POST['email']), "book", "Booking commited");
            header('Location: book.php');
            exit();
        }else{
