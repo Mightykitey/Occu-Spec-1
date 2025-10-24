@@ -32,11 +32,9 @@ echo "<h1>Primary Oaks Surgery</h1>"; // Page heading
 require_once "assets/nav.php"; // Include navigation menu
 echo "</div>";
 
-
 echo "<h2>Your Booking</h2>";
 
 Echo user_message();
-
 
 $prof = pro_getter(dabco_select());
 if (!$prof){
@@ -46,10 +44,10 @@ if (!$prof){
     echo "<table id='booking'>";
 
     foreach($prof as $pro){
-        if($pro['code']="doc"){
-            $role = 'Doctor';
-        }else if ($apt['role']="nur"){}
-        $role = "Nurse";
+        if($pro['code']="reg"){
+            $role = 'Registered';
+        }else if ($apt['role']="log"){}
+        $role = "Login";
     }
 
     echo "<form action='' method='post'>";
@@ -66,7 +64,6 @@ if (!$prof){
     echo "</tr>";
     echo "</form>"; // creaating a for each table
 }
-
 
 echo "</table>";
 
